@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> renders and displays properly 1`] = `
+<div>
+  <div
+    class="container center"
+  >
+    <div
+      class="card"
+    >
+      <h2>
+        REQRES-API
+      </h2>
+      <hr />
+      <h3>
+        Welcome back to REQRES-API
+      </h3>
+      <div
+        class="registerFormTitle"
+      >
+        <p>
+          Login
+        </p>
+      </div>
+      <form>
+        <div
+          class="form-field center"
+        >
+          <label
+            class="input"
+          >
+            <input
+              class="input__field"
+              placeholder=" "
+              type="text"
+            />
+            <span
+              class="input__label"
+            >
+              Email
+            </span>
+          </label>
+        </div>
+        <div
+          class="form-field center"
+        >
+          <label
+            class="input"
+          >
+            <input
+              class="input__field"
+              placeholder=" "
+              type="password"
+            />
+            <span
+              class="input__label"
+            >
+              Password
+            </span>
+          </label>
+        </div>
+        <div
+          class="form-field center"
+        >
+          <input
+            class="register-btn"
+            type="submit"
+            value="Login"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

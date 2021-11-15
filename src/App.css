@@ -1,16 +1,96 @@
-.App {
-  text-align: center;
+html{
+  font-size: 62.5%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 0;
+  background-color: #282c34;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1,h2 {
+  margin: 0rem;
+  padding: 0rem 0rem 1.5rem 0rem;
+  font-size: 3rem;
+  color: #282828;
+}
+
+p{
+  margin: 1.5rem 0rem 0rem 0rem;
+  letter-spacing: -0.025rem;
+  line-height: 1.25;
+  font-size: 1.6rem;
+  word-break: break-all;
+  word-wrap: pre-wrap;
+  color: #282828;
+  animation-name: p-show;
+  animation-duration: 1.5s;
+}
+
+.wavingHand{
+  display: inline-block;
+  width: auto;
+  height: auto;
+  animation: wave 1s infinite;
+}
+
+.friendRegister{
+  border: none;
+  border-radius: 3px;
+  background-color: #282c34 ;
+  width: auto;
+  margin: 1rem auto;
+  padding: 1rem 3rem;
+  color: white;
+  text-transform: uppercase;
+}
+
+.friendRegister:hover{
+  transition: 1s;
+  border: 1px solid white;
+  cursor: pointer;
+  box-shadow: rgba(161, 161, 161, 0.25) 0px 54px 55px,
+               rgba(71, 71, 71, 0.12) 0px -12px 30px,
+                rgba(77, 77, 77, 0.12) 0px 4px 6px,
+                 rgba(70, 70, 70, 0.17) 0px 12px 13px, 
+                 rgba(71, 71, 71, 0.09) 0px -3px 5px;
+}
+
+.register-btn {
+  border: none;
+  border-radius: 3px;
+  background-color: #282c34 ;
+  width: auto;
+  margin: 1rem auto;
+  padding: 1rem 3rem;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+               rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                 rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+                 rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.sign-in-btn {
+    border: none;
+    border-radius: 3px;
+    background-color: #282c34 ;
+    width: auto;
+    margin: 1rem auto;
+    padding: 1rem 3rem;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                 rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                  rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                   rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+                   rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .App-header {
@@ -28,11 +108,268 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+.container {
+  width: 80%;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* register and login form */
+.registerFormTitle{
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-field{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input{
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input__label{
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: calc(0.5rem * 0.75) calc(1rem * .5);
+  margin: calc(0.5rem * 0.75 + 3px) calc(1rem * .5);
+  background: rgb(0, 225, 255, 0.25);
+  white-space: nowrap;
+  transform: translate(0, 0);
+  transform-origin: 0 0;
+  background: white;
+  transition: transform 120ms ease-in;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.input__field{
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border: 2px solid currentColor;
+  padding: calc(0.5rem * 1.5) 1rem;
+  color: currentColor;
+  background: transparent;
+  border-radius: 4px;
+}
+
+.input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
+  transform: translate(0.25rem, -65%) scale(0.8);
+  color: #282c34;
+}
+
+/* end of register and login */
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+hr{
+  display: block;
+  border: none;
+  height: 0.3rem;
+  width: 100%;
+  background: #596377;
+  margin: 0rem;
+  animation-name: line-show;
+  animation-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1); 
+}
+
+.card {
+  background-color: white;
+  width: 25rem;
+  min-height: 1.618 * 25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 0.5rem;
+  box-shadow: 1rem -1rem 0rem 0rem rgb(0, 225, 255, 0.25);
+  border-radius: 1rem;
+  animation-name: shadow-show;
+  animation-duration: 1.5s;
+  transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1);
+}
+
+/* Home Page */
+.homeTitle{
+  color: rgb(235, 235, 235);
+  position: relative;
+  top: 0;
+}
+
+.profileContainer{
+  border-radius: 4px;
+  width: 26rem;
+  height: 100%;
+  background: rgb(235, 235, 235);
+  padding: 2rem;
+  position: relative;
+  margin-bottom: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.profile-pic-container{
+  border-radius: 90px;
+  width: 132px;
+  height: 132px;
+  background-color: #61dafb;
+  text-align: center;
+}
+
+.profilePic{
+  border-radius: 90px;
+  width: 128px;
+  height: 128px;
+}
+
+.deleteIcon{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: rgb(214, 74, 74);
+  border: none;
+  background: rgb(235, 235, 235) ;
+}
+
+.responseContainer{
+  width: 26rem;
+  height: auto;
+  background: rgb(88, 187, 88);
+  position: fixed;
+  border-radius: 5px;
+  top: 0;
+  left: 1;
+  z-index: 100;
+  padding: 1rem;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.closeStatus{
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  color:white;
+  border: none;
+  background: rgb(88, 187, 88);
+}
+
+.responseContainer h3{
+  color: white;
+}
+
+/* End of Home Page */
+
+/* modal */
+.modal-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.modal-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  position: fixed;
+  background: white;
+  box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.12),
+    0 0.2rem 0.2rem rgba(0, 0, 0, 0.12), 0 0.4rem 0.4rem rgba(0, 0, 0, 0.12),
+    0 0.8rem 0.8rem rgba(0, 0, 0, 0.12), 0 1.6rem 1.6rem rgba(0, 0, 0, 0.12);
+  width: 30rem;
+  box-sizing: border-box;
+  border-radius: 0.4rem;
+}
+
+.modalCard {
+  background-color: white;
+  width: 25rem;
+  min-height: 1.618 * 25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 0.5rem;
+  border-radius: 1rem;
+
+}
+
+/* end of modal */
+
+.clickHere{
+  color:rgb(37, 37, 216);
+  text-decoration: underline;
+  cursor: pointer;
+  animation-name: p-show;
+  animation-duration: 1.5s;
+}
+
+
+@keyframes line-show {
   from {
-    transform: rotate(0deg);
+    margin: 0rem 10rem;
   }
   to {
-    transform: rotate(360deg);
+    margin: 0rem;
+  }
+}
+
+@keyframes shadow-show {
+  from {
+    box-shadow: 0rem 0rem 0rem 0rem #e0e0e0;
+  }
+  to {
+    box-shadow: -2rem -2rem 0rem 0rem lighten(#282c34, 5%);
+  }
+}
+
+@keyframes p-show {
+  from {
+    color: white;
+  }
+  to {
+    color: #282828;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(15deg);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  50%{
+    transform: rotate(15deg);
+  }
+  75%{
+    transform: rotate(-15deg);
+  }
+  100%{
+    transform: rotate(15deg);
   }
 }

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> renders and displays properly 1`] = `
+<div>
+  <div
+    class="container center"
+  >
+    <h1
+      class="homeTitle"
+    >
+      Hello Friend 
+      <span
+        class="wavingHand"
+      >
+        👋
+      </span>
+    </h1>
+    <div
+      class="center"
+    >
+      <button
+        class="friendRegister"
+      >
+        Register a friend
+      </button>
+    </div>
+    <div
+      class="profile-list"
+    >
+      <div
+        class="container center"
+      >
+        ;
+      </div>
+    </div>
+  </div>
+</div>
+`;
