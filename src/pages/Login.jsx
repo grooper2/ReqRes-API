@@ -6,6 +6,7 @@ import "../App.css";
 const Login = () =>{
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
+   const [res, setRes] = useState('');
    const history = useHistory();
 
     const onChangeEmail = async (e) => {
@@ -22,22 +23,43 @@ const Login = () =>{
     };
 
     const submitForm = async () => {
-        await regresRepository.loginRequest({
-            email: email,
-            password: password,
-        });
-        history.push("/home");
+        if(password!==''){
+            const res = await regresRepository.loginRequest({
+                email: email,
+                password: password,
+            });
+            if(res.status === 400){
+                let status=404;
+                setRes(status);
+                return;
+            }else{
+                history.push("/home");
+            }
+        }else if(password === ''){
+            let status =4444;
+            setRes(status);
+            return;
+        }
+        
+        
     };
 
-    
+    console.log('this is my res', res);
+
         return (
-            <div className="container center">
+            <div className="container">
                 <div className="card">  
                     <h2>REQRES-API</h2>
                     <hr />
                     <h3>Welcome back to REQRES-API</h3>
                     <div className="registerFormTitle">
                         <p>Login</p>
+                        {res === 4444 &&
+                            <p className='errorMsg'>Missing password!</p>
+                        }
+                        {res === 404 &&
+                            <p className='errorMsg'>User not found</p>
+                        }
                     </div>
                     <form onSubmit={onSubmit}>
                         <div className="form-field center">

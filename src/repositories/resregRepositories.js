@@ -38,7 +38,7 @@ export const regresRepository = {
 
   deleteUser: async ({ usersId }) => {
     const response = await fetch(
-      "https://reqres.in/api/users/" + `${usersId}`,
+      "https://reqres.in/api/users/"+`${usersId}`,
       {
         method: "delete",
         headers: { "Content-Type": "application/json" },

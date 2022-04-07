@@ -93,7 +93,7 @@ p{
                    rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -102,19 +102,27 @@ p{
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
-.App-link {
+/* .App-link {
   color: #61dafb;
+} */
+
+.App{
+  min-height: 100vh;
 }
 
 .container {
+  background-color: #282c34;
   width: 80%;
-  min-height: 100vh;
+  height: auto;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   margin-left: auto;
   margin-right: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 /* register and login form */
@@ -141,6 +149,7 @@ p{
   position: absolute;
   left: 0;
   top: 0;
+  height: 50%;
   padding: calc(0.5rem * 0.75) calc(1rem * .5);
   margin: calc(0.5rem * 0.75 + 3px) calc(1rem * .5);
   background: rgb(0, 225, 255, 0.25);
@@ -190,7 +199,7 @@ hr{
 
 .card {
   background-color: white;
-  width: 25rem;
+  width: 29rem;
   min-height: 1.618 * 25rem;
   display: flex;
   flex-direction: column;
@@ -242,6 +251,7 @@ hr{
   color: rgb(214, 74, 74);
   border: none;
   background: rgb(235, 235, 235) ;
+  cursor: pointer;
 }
 
 .responseContainer{
@@ -258,13 +268,34 @@ hr{
   text-align: center;
 }
 
+.errorResponseContainer{
+  width: 26rem;
+  height: auto;
+  background: rgb(214, 74, 74);
+  position: fixed;
+  border-radius: 5px;
+  top: 0;
+  left: 1;
+  z-index: 100;
+  padding: 1rem;
+  margin-top: 25px;
+  text-align: center;
+  color: white;
+}
+
+.errorMsg{
+  color: rgb(214, 74, 74);
+  margin-bottom: 20px;
+}
+
 .closeStatus{
   position: absolute;
   top: 2px;
   right: 10px;
   color:white;
   border: none;
-  background: rgb(88, 187, 88);
+  background: transparent;
+  cursor: pointer;
 }
 
 .responseContainer h3{

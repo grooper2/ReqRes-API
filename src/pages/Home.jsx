@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import HomeProfiles from "../components/HomeComponents/HomeProfiles";
 import regresRepository from "../repositories/resregRepositories";
 import RegisterModal from "../components/registerModal/RegisterModal";
@@ -37,21 +36,40 @@ const Home = () => {
     };
 
     const submitForm = async () => {
-        const response = await regresRepository.registerRequest({
-            email: email,
-            password: password,
-        });
-        setStatus(response.status);
-        return response;
+        if(password === rpassword){
+            const response = await regresRepository.registerRequest({
+                email: email,
+                password: password,
+            });
+            setStatus(response.status);
+            return response;
+        }else{
+            setStatus(4444) //custome status for incorecte password
+        }
+        
     };
 
+
     const deleteUser = async (usersId) => {
+
+        let newUserList = [...usersList]
+
         const response = await regresRepository.deleteUser({
             usersId: usersId,
         });
-        setStatus(response);
         console.log("response status: " + response);
-        return response;
+        setStatus(response)
+        if(response === 204){
+            newUserList = usersList.filter(users => users.id !== usersId);
+            // newUserList = usersList.map((users, key) =>{
+            //     if(users.id === usersId){
+            //         usersList.splice(key,1);
+            //     }
+                console.log(newUserList);
+            //     return usersList;
+            // })
+        }
+        setUsersList(newUserList);
     }
 
     useEffect(()=> {
@@ -59,7 +77,6 @@ const Home = () => {
             const usersData = await regresRepository.listOfUsers();
             setUsersList(usersData.data);
         };
-
         loadData();
     }, [])
 
@@ -73,13 +90,25 @@ const Home = () => {
             </div>
             {status === 204 &&
                 <div className="responseContainer">
-                    <h3>User Successfuly Deleted!</h3>
+                    <h3>User Successfully Deleted!</h3>
                     <button className="closeStatus" onClick={()=>{setStatus(-1)}} >&#10006;</button>
                 </div>
             }
             {status === 200 &&
                 <div className="responseContainer">
                     <h3>User Successfuly Created!</h3>
+                    <button className="closeStatus" onClick={()=>{setStatus(-1)}} >&#10006;</button>
+                </div>
+            }
+            {status === 400 &&
+                <div className="errorResponseContainer">
+                    <h3>Only defined users succeed registration</h3>
+                    <button className="closeStatus" onClick={()=>{setStatus(-1)}} >&#10006;</button>
+                </div>
+            }
+            {status === 4444 &&
+                <div className="errorResponseContainer">
+                    <h3>Passwords are not mutching</h3>
                     <button className="closeStatus" onClick={()=>{setStatus(-1)}} >&#10006;</button>
                 </div>
             }
@@ -92,7 +121,7 @@ const Home = () => {
           <div className="modalCard">  
                 <h2>Rgister a friend</h2>
                 <hr/>
-                <h3>Please complete the form to register a friend</h3>
+                <h3>Please complete the form to register your friend</h3>
                 <form onSubmit={onSubmit}>
                     <div className="form-field center">
                         <label className="input">

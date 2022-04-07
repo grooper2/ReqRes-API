@@ -7,7 +7,10 @@ const Register = () => {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [rpassword, setrPassword] = useState("");
+   const [res, setRes] = useState('');
    const history = useHistory();
+   
+   let status =0;
 
     const onChangeEmail = async (e) => {
         setEmail(e.target.value);
@@ -23,11 +26,22 @@ const Register = () => {
 
     const onSubmit = async (e) =>{
         e.preventDefault();
-        const submitResponse= await submitForm();
-
-        if(password === rpassword){
-            history.push("/home");
-        }else if(password !== rpassword  || submitResponse.status === 400){
+        
+        if(password === rpassword && password!=='' && rpassword!==''){
+            const res = await submitForm();
+            if(res.status === 200){
+                history.push("/home");
+            }else{
+                setRes(res.status)
+            }
+            
+        }else if(password !== rpassword || password===''){
+            status=4444;
+            setRes(status)
+            return;
+        }else{
+            status=400;
+            setRes(status)
             return;
         }
         
@@ -51,6 +65,12 @@ const Register = () => {
                 <h3>Welcome to REQRES-API register here to discover more</h3>
                 <div className="registerFormTitle">
                     <p>Register</p>
+                    {res === 4444 &&
+                        <p className='errorMsg center'>Please make sure you type the password corectly</p>
+                    }
+                    {res === 400 &&
+                        <p className='errorMsg center'>Only defined users succeed registration</p>
+                    }
                 </div>
                 <form onSubmit={onSubmit}>
                     <div className="form-field center">
