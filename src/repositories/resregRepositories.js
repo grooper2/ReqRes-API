@@ -4,13 +4,17 @@ export const regresRepository = {
       email: email,
       password: password,
     };
-    const response = fetch("https://reqres.in/api/register", {
+    try {
+      const response = fetch("https://reqres.in/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestBody),
-    });
-    console.log("response: " + response);
-    return response;
+    })
+    return (await response).json();
+    } catch (error) {
+      console.log(error)
+      return error;
+    }
   },
 
   loginRequest: async ({ email, password }) => {
@@ -18,22 +22,31 @@ export const regresRepository = {
       email: email,
       password: password,
     };
-    const response = fetch("https://reqres.in/api/login", {
+    try {
+      const response = fetch("https://reqres.in/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestBody),
-    });
-
-    return response;
+    })
+    return (await response).json();
+    } catch (error) {
+      console.error(error)
+      return error;
+    }
   },
 
   listOfUsers: async () => {
-    const response = await fetch("https://reqres.in/api/users?page=1", {
+    try {
+      const response = await fetch("https://reqres.in/api/users?page=1", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
-    });
+    }).catch(error => alert(error.message));
     const data = await response.json();
     return data;
+    } catch (error) {
+      console.error(error)
+      return error;
+    }
   },
 
   deleteUser: async ({ usersId }) => {
@@ -43,7 +56,7 @@ export const regresRepository = {
         method: "delete",
         headers: { "Content-Type": "application/json" },
       }
-    );
+    ).catch(error => alert(error.message));
     console.log("data response:", response.status);
     return response.status;
   },

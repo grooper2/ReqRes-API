@@ -26,34 +26,27 @@ const Register = () => {
 
     const onSubmit = async (e) =>{
         e.preventDefault();
-        
-        if(password === rpassword && password!=='' && rpassword!==''){
-            const res = await submitForm();
-            if(res.status === 200){
-                history.push("/home");
-            }else{
-                setRes(res.status)
-            }
-            
-        }else if(password !== rpassword || password===''){
+        if(password !== rpassword || password===''){
             status=4444;
             setRes(status)
             return;
         }else{
-            status=400;
-            setRes(status)
-            return;
+            await submitForm();
         }
         
     };
+
 
     const submitForm = async () => {
         const response = await regresRepository.registerRequest({
             email: email,
             password: password,
         });
-
-        return response;
+        if(response.error){
+            setRes(response);
+        }
+        console.log(response.error)
+        return (response.error ? history.push('/register') : history.push('/home'));
         
     };
 
@@ -68,8 +61,8 @@ const Register = () => {
                     {res === 4444 &&
                         <p className='errorMsg center'>Please make sure you type the password corectly</p>
                     }
-                    {res === 400 &&
-                        <p className='errorMsg center'>Only defined users succeed registration</p>
+                    {res.error &&
+                        <p className='errorMsg center'>{res.error}</p>
                     }
                 </div>
                 <form onSubmit={onSubmit}>

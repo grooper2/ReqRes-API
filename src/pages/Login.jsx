@@ -6,7 +6,7 @@ import "../App.css";
 const Login = () =>{
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
-   const [res, setRes] = useState('');
+   const [response, setRes] = useState('');
    const history = useHistory();
 
     const onChangeEmail = async (e) => {
@@ -28,23 +28,12 @@ const Login = () =>{
                 email: email,
                 password: password,
             });
-            if(res.status === 400){
-                let status=404;
-                setRes(status);
-                return;
-            }else{
-                history.push("/home");
-            }
-        }else if(password === ''){
-            let status =4444;
-            setRes(status);
-            return;
-        }
-        
-        
-    };
+            setRes(res)
+        return(res.error ? history.push('/login') : history.push('/home'))     
+        };
+    }
 
-    console.log('this is my res', res);
+    console.log('this is my res', response);
 
         return (
             <div className="container">
@@ -54,11 +43,8 @@ const Login = () =>{
                     <h3>Welcome back to REQRES-API</h3>
                     <div className="registerFormTitle">
                         <p>Login</p>
-                        {res === 4444 &&
-                            <p className='errorMsg'>Missing password!</p>
-                        }
-                        {res === 404 &&
-                            <p className='errorMsg'>User not found</p>
+                        {response.error &&
+                            <p className='errorMsg'>{response.error}</p>
                         }
                     </div>
                     <form onSubmit={onSubmit}>
